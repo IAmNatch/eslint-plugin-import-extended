@@ -1,5 +1,5 @@
 {
-    "name": "@natch/eslint-plugin-import-extended",
+    "name": "eslint-plugin-import-extended",
     "version": "1.0.0",
     "description": "Extended set of import related ESLint rules.",
     "scripts": {
@@ -82,7 +82,6 @@
         "eslint",
         "eslintplugin",
         "eslint-plugin",
-        "nestjs",
         "linter",
         "lint",
         "style"
