@@ -1,0 +1,15 @@
+name: prepare
+description: Prepares environment with Node and Yarn
+runs:
+  using: "composite"
+  steps:
+    - name: Determine Node Version
+      id: determine-node
+      run: echo "::set-output name=version::$(cat .nvmrc | tr -d '\n')"
+      shell: bash
+    - uses: actions/setup-node@v3.3.0
+      with:
+          node-version: ${{ steps.determine-node.outputs.version }}
+    - name: Enable Corepack
+      run: corepack enable
+      shell: bash
