@@ -73,8 +73,7 @@ ruleTester.run("no-internal-from-external-modules", rule, {
         },
         {
             name: "Disallow importing interal module from unrelated file",
-            code:
-                'import {x} from "../packages/package-two/package-two-secret-sauce"',
+            code: 'import {x} from "../packages/package-two/package-two-secret-sauce"',
             filename: testFilePath("no-internal-modules/src/common/index.ts"),
             errors: [
                 {
@@ -85,8 +84,7 @@ ruleTester.run("no-internal-from-external-modules", rule, {
         },
         {
             name: "Disallow importing index that is not a modules root index",
-            code:
-                'import {x} from "../packages/package-one/nested-folder/index.ts"',
+            code: 'import {x} from "../packages/package-one/nested-folder/index.ts"',
             filename: testFilePath("no-internal-modules/src/common/index.ts"),
             errors: [
                 {

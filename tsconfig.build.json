@@ -1,6 +1,6 @@
 {
     "extends": "./tsconfig.common",
-    "include": ["src/**/*"],
+    "include": ["src", "type-deps.d.ts"],
     "exclude": [
         "node_modules",
         "**/node_modules/**",
