@@ -86,7 +86,7 @@
         "lint",
         "style"
     ],
-    "license": "ISC",
+    "license": "MIT",
     "lint-staged": {
         "*.ts": "eslint --cache --fix",
         "*.{ts,js,css,md}": "prettier --write"
