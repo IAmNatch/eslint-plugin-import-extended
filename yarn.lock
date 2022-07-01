@@ -1631,7 +1631,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/minimatch@npm:^3.0.5":
+"@types/minimatch@npm:3.0.5":
   version: 3.0.5
   resolution: "@types/minimatch@npm:3.0.5"
   checksum: c41d136f67231c3131cf1d4ca0b06687f4a322918a3a5adddc87ce90ed9dbd175a3610adee36b106ae68c0b92c637c35e02b58c8a56c424f71d30993ea220b92
@@ -2473,7 +2473,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"class-validator@npm:^0.13.2":
+"class-validator@npm:0.13.2":
   version: 0.13.2
   resolution: "class-validator@npm:0.13.2"
   dependencies:
@@ -3261,13 +3261,13 @@ __metadata:
     "@types/eslint": 8.4.2
     "@types/is-core-module": ^2.2.0
     "@types/jest": 27.5.1
-    "@types/minimatch": ^3.0.5
+    "@types/minimatch": 3.0.5
     "@types/node": 17.0.34
     "@typescript-eslint/eslint-plugin": " 5.27.1"
     "@typescript-eslint/parser": 5.27.1
     "@typescript-eslint/scope-manager": "5.27.1 "
     "@typescript-eslint/utils": 5.27.1
-    class-validator: ^0.13.2
+    class-validator: 0.13.2
     eslint: 8.15.0
     eslint-config-prettier: 8.5.0
     eslint-module-utils: ^2.7.3
