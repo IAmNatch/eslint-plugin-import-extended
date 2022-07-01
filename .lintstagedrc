@@ -1,5 +1,6 @@
 {
+  "yarn.lock": ["yarn dedupe"],
   "*.ts": [
-    "prettier --parser typescript --write","npx eslint -c .eslintrc.js --ext .ts --max-warnings 0"
+    "prettier --parser typescript --write","eslint -c .eslintrc.js --ext .ts --max-warnings 0"
   ]
 }

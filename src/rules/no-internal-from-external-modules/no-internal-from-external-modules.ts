@@ -47,11 +47,11 @@ export default createRule({
         //----------------------------------------------------------------------
         // Options
         //----------------------------------------------------------------------
-        const genericModuleRootRegex = (context.options || []).map(option =>
+        const genericModuleRootRegex = (context.options || []).map((option) =>
             minimatch.makeRe(option.moduleRoot)
         );
         const genericModuleRootChildrenRegex = (context.options || []).map(
-            option => minimatch.makeRe(path.join(option.moduleRoot, "/**"))
+            (option) => minimatch.makeRe(path.join(option.moduleRoot, "/**"))
         );
 
         //----------------------------------------------------------------------
@@ -72,7 +72,7 @@ export default createRule({
             for (let i = 2; i <= importFilePathSplit.length - 1; i++) {
                 const testPath = importFilePathSplit.slice(0, i).join("/");
 
-                if (genericModuleRootRegex.some(re => re.test(testPath))) {
+                if (genericModuleRootRegex.some((re) => re.test(testPath))) {
                     moduleChildrenRegex = minimatch.makeRe(
                         path.join(testPath, "/**")
                     );
@@ -87,11 +87,11 @@ export default createRule({
 
             // If the import is the child of any module, we must dig deeper
             if (
-                genericModuleRootChildrenRegex.some(re => re.test(importPath))
+                genericModuleRootChildrenRegex.some((re) => re.test(importPath))
             ) {
                 // If the import is for a modules top level folder, or top level index, it should pass.
                 if (
-                    genericModuleRootRegex.some(re =>
+                    genericModuleRootRegex.some((re) =>
                         re.test(importPathBaseArray.join("/"))
                     ) &&
                     importPathLast.split(".")[0] === "index"
@@ -132,9 +132,10 @@ export default createRule({
                 "external",
                 "internal",
             ];
-            const typeOfImport = importType(importPath, context as Readonly<
-                TSESLint.RuleContext<never, never[]>
-            >);
+            const typeOfImport = importType(
+                importPath,
+                context as Readonly<TSESLint.RuleContext<never, never[]>>
+            );
 
             if (
                 potentialViolationTypes.indexOf(typeOfImport) !== -1 &&

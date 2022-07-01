@@ -23,7 +23,8 @@ function isInternalRegexMatch(
     name: string,
     settings: Rule.RuleContext["settings"]
 ) {
-    const internalScope = settings && settings["import/internal-regex"];
+    const internalScope: string | undefined =
+        settings && settings["import/internal-regex"];
     return internalScope && new RegExp(internalScope).test(name);
 }
 
