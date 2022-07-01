@@ -55,8 +55,13 @@ ruleTester.run("no-internal-from-external-modules", rule, {
             options: [{moduleRoot: "**/packages/*"}],
             filename: testFilePath("no-internal-modules/src/index.ts"),
         },
+        {
+            name: "Ignore modules that are not specified as a root module",
+            code: 'import x from "./common/some-common-file"',
+            options: [{moduleRoot: "**/packages/*"}],
+            filename: testFilePath("no-internal-modules/src/index.ts"),
+        },
     ],
-
     invalid: [
         {
             name: "Disallow importing internal modules from sibling modules",
@@ -92,6 +97,17 @@ ruleTester.run("no-internal-from-external-modules", rule, {
                 },
             ],
             options: [{moduleRoot: "**/packages/*"}],
+        },
+        {
+            name: "Disallow importing files from an external package, if specified in options",
+            code: 'import x from "@someCompany/external-package/internal-file"',
+            options: [{moduleRoot: "@someCompany/external-package"}],
+            filename: testFilePath("no-internal-modules/src/common/index.ts"),
+            errors: [
+                {
+                    messageId: "shouldUseExternal",
+                },
+            ],
         },
     ],
 });
