@@ -2,7 +2,7 @@
 
 ## Rules
 
-### no-internal-modules-from-external-modules
+### no-internal-from-external-modules
 
 This rule prevents external modules and files from accessing a module's internals, while allowing the module itself to reference its own internals.
 Modules can still accessed via their index files, establishing a pattern of public vs private interfaces.
