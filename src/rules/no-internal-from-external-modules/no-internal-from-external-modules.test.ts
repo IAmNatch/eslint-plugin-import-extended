@@ -30,7 +30,7 @@ ruleTester.run("no-internal-from-external-modules", rule, {
         {
             name: "Allow sibling import within internal module",
             code: 'import x from "./package-one-secret-sauce"',
-            options: [{moduleRoot: "**/packages/*"}],
+            options: [{moduleRoot: ["**/packages/*"]}],
             filename: testFilePath(
                 "no-internal-modules/src/packages/package-one/index.ts"
             ),
@@ -38,7 +38,7 @@ ruleTester.run("no-internal-from-external-modules", rule, {
         {
             name: "Allow sibling import within internal module's nested folder",
             code: 'import x from "../package-one-secret-sauce"',
-            options: [{moduleRoot: "**/packages/*"}],
+            options: [{moduleRoot: ["**/packages/*"]}],
             filename: testFilePath(
                 "no-internal-modules/src/packages/package-one/nested-folder/some-file.ts"
             ),
@@ -46,19 +46,19 @@ ruleTester.run("no-internal-from-external-modules", rule, {
         {
             name: "Allow importing index from external module",
             code: 'import x from "./packages/package-one"',
-            options: [{moduleRoot: "**/packages/*"}],
+            options: [{moduleRoot: ["**/packages/*"]}],
             filename: testFilePath("no-internal-modules/src/index.ts"),
         },
         {
             name: "Allow importing index directly from external module",
             code: 'import x from "./packages/package-one/index"',
-            options: [{moduleRoot: "**/packages/*"}],
+            options: [{moduleRoot: ["**/packages/*"]}],
             filename: testFilePath("no-internal-modules/src/index.ts"),
         },
         {
             name: "Ignore modules that are not specified as a root module",
             code: 'import x from "./common/some-common-file"',
-            options: [{moduleRoot: "**/packages/*"}],
+            options: [{moduleRoot: ["**/packages/*"]}],
             filename: testFilePath("no-internal-modules/src/index.ts"),
         },
     ],
@@ -69,7 +69,7 @@ ruleTester.run("no-internal-from-external-modules", rule, {
             filename: testFilePath(
                 "no-internal-modules/src/packages/package-one/index.ts"
             ),
-            options: [{moduleRoot: "**/packages/*"}],
+            options: [{moduleRoot: ["**/packages/*"]}],
             errors: [
                 {
                     messageId: "shouldUseExternal",
@@ -85,7 +85,7 @@ ruleTester.run("no-internal-from-external-modules", rule, {
                     messageId: "shouldUseExternal",
                 },
             ],
-            options: [{moduleRoot: "**/packages/*"}],
+            options: [{moduleRoot: ["**/packages/*"]}],
         },
         {
             name: "Disallow importing index that is not a modules root index",
@@ -96,13 +96,33 @@ ruleTester.run("no-internal-from-external-modules", rule, {
                     messageId: "shouldUseExternal",
                 },
             ],
-            options: [{moduleRoot: "**/packages/*"}],
+            options: [{moduleRoot: ["**/packages/*"]}],
         },
         {
             name: "Disallow importing files from an external package, if specified in options",
             code: 'import x from "@someCompany/external-package/internal-file"',
-            options: [{moduleRoot: "@someCompany/external-package"}],
+            options: [{moduleRoot: ["@someCompany/external-package"]}],
             filename: testFilePath("no-internal-modules/src/common/index.ts"),
+            errors: [
+                {
+                    messageId: "shouldUseExternal",
+                },
+            ],
+        },
+        {
+            name: "Should support disallowing via multiple options",
+            code: 'import {x} from "../package-two/package-two-secret-sauce"',
+            filename: testFilePath(
+                "no-internal-modules/src/packages/package-one/index.ts"
+            ),
+            options: [
+                {
+                    moduleRoot: [
+                        "@someCompany/external-package",
+                        "**/packages/*",
+                    ],
+                },
+            ],
             errors: [
                 {
                     messageId: "shouldUseExternal",

@@ -31,7 +31,10 @@ export default createRule({
                 type: "object",
                 properties: {
                     moduleRoot: {
-                        type: "string",
+                        type: "array",
+                        items: {
+                            type: "string",
+                        },
                     },
                 },
                 additionalProperties: false,
@@ -41,17 +44,18 @@ export default createRule({
 
     create(
         context: Readonly<
-            TSESLint.RuleContext<"shouldUseExternal", {moduleRoot: string}[]>
+            TSESLint.RuleContext<"shouldUseExternal", {moduleRoot: string[]}[]>
         >
     ) {
         //----------------------------------------------------------------------
         // Options
         //----------------------------------------------------------------------
-        const genericModuleRootRegex = (context.options || []).map((option) =>
-            minimatch.makeRe(option.moduleRoot)
+        const moduleRoot = context.options[0].moduleRoot || [];
+        const genericModuleRootRegex = moduleRoot.map((root) =>
+            minimatch.makeRe(root)
         );
-        const genericModuleRootChildrenRegex = (context.options || []).map(
-            (option) => minimatch.makeRe(path.join(option.moduleRoot, "/**"))
+        const genericModuleRootChildrenRegex = moduleRoot.map((root) =>
+            minimatch.makeRe(path.join(root, "/**"))
         );
 
         //----------------------------------------------------------------------
