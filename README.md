@@ -9,9 +9,9 @@ Modules can still accessed via their index files, establishing a pattern of publ
 
 #### Options
 
-| Option     | type                          | description                                               | Ex                                        |
-| ---------- | ----------------------------- | --------------------------------------------------------- | ----------------------------------------- |
-| moduleRoot | string (path or glob pattern) | Sets the top level folder where a module may be accessed. | `**/packages/*` or `src/modules/myModule` |
+| Option     | type                                    | description                                               | Ex                                            |
+| ---------- | --------------------------------------- | --------------------------------------------------------- | --------------------------------------------- |
+| moduleRoot | array of strings (path or glob pattern) | Sets the top level folder where a module may be accessed. | `[**/packages/*]` or `[src/modules/myModule]` |
 
 #### Examples
 
@@ -36,7 +36,7 @@ And the .eslintrc file:
   ...
   "rules": {
     "import-extended/no-internal-from-external-modules": [ "error", {
-      "moduleRoot": "**/packages/*",
+      "moduleRoot": ["**/packages/*"],
     } ]
   }
 }
